@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.snowdream.android;
+package com.github.snowdream.android;
 
 /**
  * Wrapper API for sending log output
