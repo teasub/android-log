@@ -1,48 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<parent>
-		<groupId>org.sonatype.oss</groupId>
-		<artifactId>oss-parent</artifactId>
-		<version>7</version>
-	</parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.snowdream.android</groupId>
+		<artifactId>parent</artifactId>
+		<version>0.0.4</version>
+	</parent>
 	<groupId>com.github.snowdream.android</groupId>
 	<artifactId>log</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
 	<name>log</name>
-	<description>The android library project - log</description>
-	<url>https://github.com/snowdream/android-log</url>
-	<licenses>
-		<license>
-			<name>The Apache Software License, Version 2.0</name>
-			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
 	<scm>
 		<connection>scm:git:git@github.com:snowdream/android-log.git</connection>
 		<developerConnection>scm:git:git@github.com:snowdream/android-log.git</developerConnection>
 		<url>git@github.com:snowdream/android-log.git</url>
 	</scm>
-	<developers>
-		<developer>
-			<id>snowdream</id>
-			<name>yanghui</name>
-			<email>yanghui1986527@gmail.com</email>
-		</developer>
-	</developers>
-	<properties>
-		<platform.version> 1.5_r4
-		</platform.version>
-	</properties>
-
+	<issueManagement>
+		<system>Github</system>
+		<url>https://github.com/snowdream/android-log/issues</url>
+	</issueManagement>
 	<dependencies>
 		<dependency>
 			<groupId>com.google.android</groupId>
 			<artifactId>android</artifactId>
-			<version>${platform.version}</version>
-			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.android</groupId>
+			<artifactId>android-test</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -51,27 +37,10 @@
 			<plugin>
 				<groupId>com.jayway.maven.plugins.android.generation2</groupId>
 				<artifactId>android-maven-plugin</artifactId>
-				<version>3.5.0</version>
-				<configuration>
-					<androidManifestFile>${project.basedir}/AndroidManifest.xml</androidManifestFile>
-					<assetsDirectory>${project.basedir}/assets</assetsDirectory>
-					<resourceDirectory>${project.basedir}/res</resourceDirectory>
-					<nativeLibrariesDirectory>${project.basedir}/src/main/native</nativeLibrariesDirectory>
-					<sdk>
-						<platform>3</platform>
-					</sdk>
-					<undeployBeforeDeploy>true</undeployBeforeDeploy>
-				</configuration>
-				<extensions>true</extensions>
 			</plugin>
-
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
 			</plugin>
 		</plugins>
 	</build>
