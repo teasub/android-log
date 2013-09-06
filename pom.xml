@@ -7,7 +7,7 @@
 		<artifactId>parent</artifactId>
 		<version>0.0.4</version>
 	</parent>
-	<groupId>com.github.snowdream.android</groupId>
+	<groupId>com.github.snowdream.android.util</groupId>
 	<artifactId>log</artifactId>
 	<version>0.0.4-SNAPSHOT</version>
 	<packaging>jar</packaging>
