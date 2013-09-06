@@ -8,30 +8,58 @@ Download [the latest jar][1] or grab via Maven:
 
 ```xml
 <dependency>
-  <groupId>com.github.snowdream.android.widget</groupId>
-  <artifactId>notfound-webview</artifactId>
-  <version>0.0.2</version>
-  <type>apklib</type>
+  <groupId>com.github.snowdream.android.util</groupId>
+  <artifactId>log</artifactId>
+  <version>0.0.4</version>
 </dependency>
 ```
 
 ##Usage
-Import the library with maven,Then define your custom webview widget in the layout file(like activity_main.xml).
-```xml
-<com.github.snowdream.android.widget.NotFoundWebView
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/webview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:type="qq" />
+1.enable/disable log  
+```java
+Log.setEnabled(true);  
+Log.setEnabled(false);  
 ```
 
-Then in the activity,load the url address as usual.If you get an error 404,Then the webview will show show the information to help finding the missing children.
-
+2.set the Tag for the log  
 ```java
-NotFoundWebView webView = (NotFoundWebView)findViewById(R.id.webview);
-webView.setWebViewClient(new WebViewClient());
-webView.loadUrl("http://www.checkupdown.com/InvalidPage.html");
+Log.setTag("Android");  
+```
+
+3.log simple  
+```java
+Log.d("test");  
+Log.v("test");  
+Log.i("test");  
+Log.w("test");  
+Log.e("test");  
+```
+
+4.log simple -- set custom tag  
+```java
+Log.d("TAG","test");  
+Log.v("TAG","test");  
+Log.i("TAG","test");  
+Log.w("TAG","test");  
+Log.e("TAG","test");  
+```
+
+5.log advance  
+```java
+Log.d("test",new Throwable("test"));  
+Log.v("test",new Throwable("test"));  
+Log.i("test",new Throwable("test"));  
+Log.w("test",new Throwable("test"));  
+Log.e("test",new Throwable("test"));  
+```
+
+6.log advance  -- set custom tag   
+```java
+Log.d("TAG","test",new Throwable("test"));  
+Log.v("TAG","test",new Throwable("test"));  
+Log.i("TAG","test",new Throwable("test"));  
+Log.w("TAG","test",new Throwable("test"));  
+Log.e("TAG","test",new Throwable("test"));  
 ```
 
 ##License
@@ -51,4 +79,4 @@ webView.loadUrl("http://www.checkupdown.com/InvalidPage.html");
  limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/widget/notfound-webview/0.0.2/notfound-webview-0.0.2.apklib
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/0.0.4/log-0.0.4.jar
