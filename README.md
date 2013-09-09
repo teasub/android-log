@@ -3,6 +3,9 @@
 ##Introduction
 android lib - log
 
+##System requirements
+Android 1.5+
+
 ##Download
 Download [the latest jar][1] or grab via Maven:
 
