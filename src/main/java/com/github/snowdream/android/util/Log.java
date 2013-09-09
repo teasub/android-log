@@ -17,7 +17,54 @@
 package com.github.snowdream.android.util;
 
 /**
- * Wrapper API for sending log output
+ * Wrapper API for sending log output <BR /><BR />
+ * 
+ * 1.enable/disable log
+ *  <pre>
+ * Log.setEnabled(true);  
+ * Log.setEnabled(false);  
+ * </pre>
+ * 
+ * 2.set the Tag for the log
+ *  <pre>
+ * Log.setTag("Android");  
+ * </pre>
+ * 
+ * 3.log simple
+ *  <pre>
+ * Log.d("test");  
+ * Log.v("test");  
+ * Log.i("test");  
+ * Log.w("test");  
+ * Log.e("test");  
+ * </pre>
+ * 
+ * 4.log simple -- set custom tag
+ *  <pre>
+ * Log.d("TAG","test");  
+ * Log.v("TAG","test");  
+ * Log.i("TAG","test");  
+ * Log.w("TAG","test");  
+ * Log.e("TAG","test");  
+ * </pre>
+ * 
+ * 5.log advance
+ *  <pre>
+ * Log.d("test",new Throwable("test"));  
+ * Log.v("test",new Throwable("test"));  
+ * Log.i("test",new Throwable("test"));  
+ * Log.w("test",new Throwable("test"));  
+ * Log.e("test",new Throwable("test"));  
+ * </pre>
+ * 
+ * 6.log advance -- set custom tag
+ * <pre>
+ * Log.d("TAG","test",new Throwable("test"));  
+ * Log.v("TAG","test",new Throwable("test"));  
+ * Log.i("TAG","test",new Throwable("test"));  
+ * Log.w("TAG","test",new Throwable("test"));  
+ * Log.e("TAG","test",new Throwable("test"));  
+ * </pre>
  */
 public class Log {
 
