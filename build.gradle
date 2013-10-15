@@ -1,26 +1,56 @@
-apply plugin: 'java'
-apply plugin: 'maven'
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 
-group = 'com.github.snowdream.android.util'
-version = '0.0.5-SNAPSHOT'
-
-description = """log"""
-
-sourceCompatibility = 1.6
-targetCompatibility = 1.6
-
-configurations.all {
-}
-
-repositories {
-        
-     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-     maven { url "http://repo.maven.apache.org/maven2" }
-}
-dependencies {
-    compile(group: 'com.google.android', name: 'android', version:'4.1.1.4') {
-       /* This dependency was originally in the Maven provided scope, but the project was not of type war.
-       This behavior is not yet supported by Gradle, so this dependency has been converted to a compile dependency.
-       Please review and delete this closure when resolved. */
+    dependencies {
+        classpath 'com.android.tools.build:gradle:0.6.+'
     }
 }
+
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
+
+allprojects {
+    group = 'com.github.snowdream.android.util'
+    version = '0.0.5-SNAPSHOT'
+
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
+apply plugin: 'android-reporting'
+
+apply plugin: 'android-library'
+
+android {
+    compileSdkVersion 18
+    buildToolsVersion '18.0.1'
+
+    sourceSets {
+        main {
+            manifest.srcFile 'AndroidManifest.xml'
+            java.srcDirs = ['src']
+            res.srcDirs = ['res']
+        }
+    }
+}
+
+android.libraryVariants.all { variant ->
+
+    task("generate${variant.name}Javadoc", type: Javadoc) {
+        description "Generates Javadoc for $variant.name."
+        source = variant.javaCompile.source
+        ext.androidJar = "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+    }
+
+}
+
+apply from: '../maven_push.gradle'
