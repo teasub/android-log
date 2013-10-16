@@ -86,7 +86,6 @@ adt-bundle-windows-x86_64/
 # Exclude Folder List #
 .gradle/
 build/
-gradle/
 
 ### Maven ###
 target/

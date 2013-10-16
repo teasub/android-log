@@ -4,53 +4,28 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.6.+'
+        classpath 'com.android.tools.build:gradle:0.6.1'
+        classpath 'nl.javadude.gradle.plugins:license-gradle-plugin:0.5.0'
     }
 }
-
-def isReleaseBuild() {
-    return version.contains("SNAPSHOT") == false
-}
-
-allprojects {
-    group = 'com.github.snowdream.android.util'
-    version = '0.0.5-SNAPSHOT'
-
-    repositories {
-        mavenCentral()
-    }
-
-    tasks.withType(JavaCompile) {
-        options.encoding = "UTF-8"
-    }
-}
-
-apply plugin: 'android-reporting'
 
 apply plugin: 'android-library'
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion '18.0.1'
+    compileSdkVersion 17
+    buildToolsVersion "17"
 
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
+            resources.srcDirs = ['src']
+            aidl.srcDirs = ['src']
+            renderscript.srcDirs = ['src']
             res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
         }
     }
 }
 
-android.libraryVariants.all { variant ->
-
-    task("generate${variant.name}Javadoc", type: Javadoc) {
-        description "Generates Javadoc for $variant.name."
-        source = variant.javaCompile.source
-        ext.androidJar = "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
-        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
-    }
-
-}
-
-apply from: '../maven_push.gradle'
+apply from: 'config/license.gradle'
