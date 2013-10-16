@@ -15,6 +15,11 @@ android {
     compileSdkVersion 17
     buildToolsVersion "17"
 
+    defaultConfig {
+        minSdkVersion 3
+        versionCode 17
+    }
+
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
