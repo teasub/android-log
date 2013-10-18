@@ -35,3 +35,4 @@ android {
 }
 
 apply from: 'config/license.gradle'
+apply from: 'config/sign.gradle'
