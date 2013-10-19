@@ -9,9 +9,37 @@ buildscript {
     }
 }
 
-apply plugin: 'maven'
+def isReleaseBuild() {
+    return version.contains("SNAPSHOT") == false
+}
 
+allprojects {
+    groupId = POM_GROUP_ID
+    artifactId = POM_ARTIFACT_ID
+    version = POM_VERSION
 
-apply from: 'config/license.gradle'
-apply from: 'config/sign.gradle'
+    repositories {
+        mavenCentral()
+    }
+
+    tasks.withType(JavaCompile) {
+        options.encoding = "UTF-8"
+    }
+}
+
 apply from: 'config/android-library.gradle'
+apply from: 'config/license.gradle'
+//apply from: 'config/sign.gradle'
+apply from: 'config/maven_push.gradle'
+
+android.libraryVariants.all { variant ->
+
+    task("generate${variant.name}Javadoc", type: Javadoc) {
+        description "Generates Javadoc for $variant.name."
+        source = variant.javaCompile.source
+        ext.androidJar =
+                "${android.plugin.sdkDirectory}/platforms/${android.compileSdkVersion}/android.jar"
+        classpath = files(variant.javaCompile.classpath.files) + files(ext.androidJar)
+    }
+
+}
