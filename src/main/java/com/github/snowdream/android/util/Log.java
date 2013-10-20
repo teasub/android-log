@@ -71,14 +71,14 @@ public class Log {
      */
     public static final int LOG_ERROR_TO_FILE = 2;
 
-    private enum TYPE {
-        INFO, DEBUG, VERBOSE, WARN, ERROR
-    }
-
     /**
      * ALL
      */
     public static final int LOG_ALL_TO_FILE = 3;
+
+    private enum TYPE {
+        INFO, DEBUG, VERBOSE, WARN, ERROR
+    }
 
     /**
      * Whether to enable the log

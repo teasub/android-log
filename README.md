@@ -13,7 +13,7 @@ Download [the latest jar][1] or grab via Maven:
 <dependency>
   <groupId>com.github.snowdream.android.util</groupId>
   <artifactId>log</artifactId>
-  <version>0.0.4</version>
+  <version>0.0.6</version>
 </dependency>
 ```
 
@@ -65,6 +65,18 @@ Log.w("TAG","test",new Throwable("test"));
 Log.e("TAG","test",new Throwable("test"));  
 ```
 
+7.Log to File
+```java
+Log.setPath("/mnt/cdcard/debug.txt"");
+Log.setsetPolicy(Log.LOG_ALL_TO_FILE);
+
+Log.d("test");  
+Log.v("test");  
+Log.i("test");  
+Log.w("test");  
+Log.e("test");
+```
+
 ##License
 ```
  Copyright (C) 2013 Snowdream Mobile
@@ -82,4 +94,4 @@ Log.e("TAG","test",new Throwable("test"));
  limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/0.0.4/log-0.0.4.jar
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/0.0.6/log-0.0.6.jar

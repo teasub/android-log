@@ -127,6 +127,7 @@ afterEvaluate { project ->
         from android.sourceSets.main.allSource
     }
 
+
     artifacts {
         archives androidReleaseJar
         archives androidSourcesJar
