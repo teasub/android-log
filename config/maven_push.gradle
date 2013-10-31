@@ -63,7 +63,7 @@ afterEvaluate { project ->
                     authentication(userName: nexusUsername, password: nexusPassword)
                 }
 
-                repository(url: githubRepositoryUrl)
+                //repository(url: githubRepositoryUrl)
 
                 pom.project {
                     groupId POM_GROUP_ID
