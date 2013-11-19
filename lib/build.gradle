@@ -4,3 +4,7 @@ apply from: '../config/android-library.gradle'
 apply from: '../config/license.gradle'
 //apply from: '../config/sign.gradle'
 apply from: '../config/maven_push.gradle'
+
+dependencies {
+    compile 'org.apache.commons:commons-lang3:3.1'
+}

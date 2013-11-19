@@ -31,22 +31,53 @@ public class Log2File {
                 public void run() {
                     PrintWriter out = null;
 
+                    if (TextUtils.isEmpty(path)) {
+                        Log.e("Error", "The path of Log file is Null.");
+                        return;
+                    }
+
                     if (file == null && !TextUtils.isEmpty(path)) {
                         file = new File(path);
                     }
 
-                    if (file == null){
-                        Log.e("Error","The Log file can not be found!");
-                        return;
+                    /**
+                     * checkout
+                     */
+                    boolean ret = true;
+                    boolean exist = true;
+
+                    exist = file.getParentFile().exists();
+                    if (!exist) {
+                        ret = file.getParentFile().mkdirs();
+
+                        if (!ret) {
+                            Log.e("Error", "The Log Dir can not be created!");
+                            return;
+                        }
+
+                        Log.i("Success", "The Log Dir was successfully created! -" + file.getParent());
                     }
 
-                    if (!file.getParentFile().exists()) {
-                        file.getParentFile().mkdirs();
+                    exist = file.exists();
+                    if (!exist) {
+                        try {
+                            ret = file.createNewFile();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (!ret) {
+                            Log.e("Error", "The Log file can not be created!");
+                            return;
+                        }
+
+                        Log.i("Success", "The Log file was successfully created! -" + file.getAbsolutePath());
                     }
 
                     try {
                         out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
-                        out.write(str);
+                        out.println(str);
+                        out.flush();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } finally {
