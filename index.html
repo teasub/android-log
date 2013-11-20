@@ -54,12 +54,12 @@
 <h2>
 <a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
 
-<p>Download <a href="https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/0.0.6/log-0.0.6.jar">the latest jar</a> or grab via Maven:</p>
+<p>Download <a href="https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/1.0/log-1.0.jar">the latest jar</a> or grab via Maven:</p>
 
 <div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
   <span class="nt">&lt;groupId&gt;</span>com.github.snowdream.android.util<span class="nt">&lt;/groupId&gt;</span>
   <span class="nt">&lt;artifactId&gt;</span>log<span class="nt">&lt;/artifactId&gt;</span>
-  <span class="nt">&lt;version&gt;</span>0.0.6<span class="nt">&lt;/version&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.0<span class="nt">&lt;/version&gt;</span>
 <span class="nt">&lt;/dependency&gt;</span>
 </pre></div>
 
@@ -115,32 +115,46 @@
 
 <p>7.Log to File</p>
 
-<div class="highlight highlight-java"><pre><span class="n">Log</span><span class="o">.</span><span class="na">setPath</span><span class="o">(</span><span class="s">"/mnt/cdcard/debug.txt"");</span>
-<span class="s">Log.setsetPolicy(Log.LOG_ALL_TO_FILE);</span>
+<p>log into one file      </p>
 
-<span class="s">Log.d("</span><span class="n">test</span><span class="s">");  </span>
-<span class="s">Log.v("</span><span class="n">test</span><span class="s">");  </span>
-<span class="s">Log.i("</span><span class="n">test</span><span class="s">");  </span>
-<span class="s">Log.w("</span><span class="n">test</span><span class="s">");  </span>
-<span class="s">Log.e("</span><span class="n">test</span><span class="err">"</span><span class="o">);</span>
+<div class="highlight highlight-java"><pre><span class="n">Log</span><span class="o">.</span><span class="na">setPath</span><span class="o">(</span><span class="s">"/mnt/sdcard/debug.txt"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">setPolicy</span><span class="o">(</span><span class="n">Log</span><span class="o">.</span><span class="na">LOG_ALL_TO_FILE</span><span class="o">);</span>
+
+<span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"test 1"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"test 2"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"test 3"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="s">"test 4"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"test 5"</span><span class="o">);</span>
+</pre></div>
+
+<p>log into one directory with a lot of log files</p>
+
+<div class="highlight highlight-java"><pre><span class="n">Log</span><span class="o">.</span><span class="na">setPath</span><span class="o">(</span><span class="s">"/mnt/sdcard/snowdream/log"</span><span class="o">,</span><span class="s">"log"</span><span class="o">,</span><span class="s">"log"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">setPolicy</span><span class="o">(</span><span class="n">Log</span><span class="o">.</span><span class="na">LOG_ALL_TO_FILE</span><span class="o">);</span>
+
+<span class="n">Log</span><span class="o">.</span><span class="na">d</span><span class="o">(</span><span class="s">"test 1"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">v</span><span class="o">(</span><span class="s">"test 2"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">i</span><span class="o">(</span><span class="s">"test 3"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">w</span><span class="o">(</span><span class="s">"test 4"</span><span class="o">);</span>
+<span class="n">Log</span><span class="o">.</span><span class="na">e</span><span class="o">(</span><span class="s">"test 5"</span><span class="o">);</span>
 </pre></div>
 
 <h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<pre><code> Copyright (C) 2013 Snowdream Mobile
+<pre><code>Copyright (C) 2013 Snowdream Mobile (yanghui1986527@gmail.com)
 
- Licensed under the Apache License, Version 2.0 (the "License");
- you may not use this file except in compliance with the License.
- You may obtain a copy of the License at
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
- http://www.apache.org/licenses/LICENSE-2.0
+        http://www.apache.org/licenses/LICENSE-2.0
 
- Unless required by applicable law or agreed to in writing, software
- distributed under the License is distributed on an "AS IS" BASIS,
- WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- See the License for the specific language governing permissions and
- limitations under the License.
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 </code></pre>
       </section>
 
