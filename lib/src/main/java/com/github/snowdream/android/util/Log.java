@@ -616,14 +616,14 @@ public class Log {
             buffer.append(tag);
             buffer.append("    ");
             buffer.append(caller.getClassName());
-            buffer.append("");
+            buffer.append(".");
             buffer.append(caller.getMethodName());
             buffer.append("(): ");
             buffer.append(msg);
             com.github.snowdream.android.util.Log2File.log2file(path, buffer.toString());
         }
 
-        return new StringBuffer().append(caller.getClassName()).append("")
+        return new StringBuffer().append(caller.getClassName()).append(".")
                 .append(caller.getMethodName()).append("(): ").append(msg)
                 .toString();
     }
