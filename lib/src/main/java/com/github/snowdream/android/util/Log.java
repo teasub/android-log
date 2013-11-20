@@ -1,9 +1,27 @@
+/*
+ * Copyright (C) 2013 Snowdream Mobile (yanghui1986527@gmail.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *         http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.github.snowdream.android.util;
 
 import android.text.TextUtils;
 
 import org.apache.commons.lang3.time.FastDateFormat;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -140,7 +158,6 @@ public class Log {
 
     /**
      * is the log enabled?
-     *
      */
     public static boolean isEnabled() {
         return isEnable;
@@ -175,13 +192,12 @@ public class Log {
 
     /**
      * set the log file path
-     *
+     * <p/>
      * The log file path will be: logDirPath + logFileBaseName + Formated time +logFileSuffix
      *
-     *
-     * @param logDirPath the log file dir path,such as "/mnt/sdcard/snowdream/log"
+     * @param logDirPath      the log file dir path,such as "/mnt/sdcard/snowdream/log"
      * @param logFileBaseName the log file base file name,such as "log"
-     * @param logFileSuffix  the log file suffix,such as "log"
+     * @param logFileSuffix   the log file suffix,such as "log"
      */
     public static void setPath(String logDirPath, String logFileBaseName, String logFileSuffix) {
         if (!TextUtils.isEmpty(logDirPath)) {
@@ -209,9 +225,7 @@ public class Log {
         buffer.append(".");
         buffer.append(logFileSuffix);
 
-        if (TextUtils.isEmpty(path)) {
-            path = buffer.toString();
-        }
+        setPath(buffer.toString());
     }
 
     /**
@@ -230,7 +244,54 @@ public class Log {
      */
     public static void setPath(String path) {
         Log.path = path;
+        createLogFile(path);
     }
+
+    /**
+     * create the file from the path
+     *
+     * @param path
+     */
+    private static void createLogFile(String path) {
+        if (TextUtils.isEmpty(path)) {
+            android.util.Log.e("Error", "The path is not valid.");
+            return;
+        }
+
+        File file = new File(path);
+
+        boolean ret = true;
+        boolean exist = true;
+
+        exist = file.getParentFile().exists();
+        if (!exist) {
+            ret = file.getParentFile().mkdirs();
+
+            if (!ret) {
+                android.util.Log.e("Error", "The Log Dir can not be created!");
+                return;
+            }
+
+            android.util.Log.i("Success", "The Log Dir was successfully created! -" + file.getParent());
+        }
+
+        exist = file.exists();
+        if (!exist) {
+            try {
+                ret = file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            if (!ret) {
+                android.util.Log.e("Error", "The Log file can not be created!");
+                return;
+            }
+
+            android.util.Log.i("Success", "The Log file was successfully created! -" + file.getAbsolutePath());
+        }
+    }
+
 
     /**
      * Send a VERBOSE log message.
