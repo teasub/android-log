@@ -66,6 +66,7 @@ Log.e("TAG","test",new Throwable("test"));
 ```
 
 7.Log to File
+
 log into one file      
 ```java
 Log.setPath("/mnt/sdcard/debug.txt");
