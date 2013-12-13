@@ -25,14 +25,33 @@ import java.util.concurrent.Executors;
 
 
 /**
+ * Write the Log to the file
+ *
  * Created by snowdream on 10/20/13.
  */
 public class Log2File {
 
-
     private static ExecutorService executor = null;
 
-    public static void log2file(final String path, final String str) {
+    /**
+     * Get the ExecutorService
+     *
+     * @return  the ExecutorService
+     */
+    public static ExecutorService getExecutor() {
+        return executor;
+    }
+
+    /**
+     * Set the ExecutorService
+     *
+     * @param executor the ExecutorService
+     */
+    public static void setExecutor(ExecutorService executor) {
+        Log2File.executor = executor;
+    }
+
+    protected static void log2file(final String path, final String str) {
         if (executor == null) {
             executor = Executors.newSingleThreadExecutor();
         }
