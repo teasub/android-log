@@ -9,12 +9,17 @@ Android 1.5+
 ##Download
 Download [the latest jar][1] or grab via Maven:
 
+Maven
 ```xml
 <dependency>
   <groupId>com.github.snowdream.android.util</groupId>
   <artifactId>log</artifactId>
-  <version>1.0</version>
+  <version>1.0.1</version>
 </dependency>
+```
+Gradle
+```xml
+    compile 'com.github.snowdream.android.util:log:1.0.1'
 ```
 
 ##Usage
@@ -93,7 +98,7 @@ Log.e("test 5");
 
 ##License
 ```
-Copyright (C) 2013 Snowdream Mobile (yanghui1986527@gmail.com)
+Copyright (C) 2013 Snowdream Mobile <yanghui1986527@gmail.com>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -108,4 +113,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/1.0/log-1.0.jar
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/1.0.1/log-1.0.1.jar
