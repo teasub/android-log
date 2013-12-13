@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Write the Log to the file
- *
+ * <p/>
  * Created by snowdream on 10/20/13.
  */
 public class Log2File {
@@ -36,9 +36,9 @@ public class Log2File {
     /**
      * Get the ExecutorService
      *
-     * @return  the ExecutorService
+     * @return the ExecutorService
      */
-    public static ExecutorService getExecutor() {
+    protected static ExecutorService getExecutor() {
         return executor;
     }
 
@@ -47,7 +47,7 @@ public class Log2File {
      *
      * @param executor the ExecutorService
      */
-    public static void setExecutor(ExecutorService executor) {
+    protected static void setExecutor(ExecutorService executor) {
         Log2File.executor = executor;
     }
 
