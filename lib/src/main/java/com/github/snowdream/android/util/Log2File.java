@@ -1,4 +1,3 @@
-
 /*
  * Copyright (C) 2013 Snowdream Mobile <yanghui1986527@gmail.com>
  *
