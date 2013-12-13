@@ -9,7 +9,6 @@ Android 1.5+
 ##Download
 Download [the latest jar][1] or grab via Maven:
 
-Maven
 ```xml
 <dependency>
   <groupId>com.github.snowdream.android.util</groupId>
@@ -17,8 +16,9 @@ Maven
   <version>1.0.1</version>
 </dependency>
 ```
-Gradle
-```xml
+
+or Gradle:
+```groovy
     compile 'com.github.snowdream.android.util:log:1.0.1'
 ```
 
