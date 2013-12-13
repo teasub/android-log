@@ -17,11 +17,9 @@
 package com.github.snowdream.android.util;
 
 import android.text.TextUtils;
-
 import org.apache.commons.lang3.time.FastDateFormat;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -244,15 +242,15 @@ public class Log {
      */
     public static void setPath(String path) {
         Log.path = path;
-        createLogFile(path);
+        createLogDir(path);
     }
 
     /**
-     * create the file from the path
+     * create the Directory from the path
      *
      * @param path
      */
-    private static void createLogFile(String path) {
+    private static void createLogDir(String path) {
         if (TextUtils.isEmpty(path)) {
             android.util.Log.e("Error", "The path is not valid.");
             return;
@@ -260,8 +258,8 @@ public class Log {
 
         File file = new File(path);
 
-        boolean ret = true;
-        boolean exist = true;
+        boolean ret;
+        boolean exist;
 
         exist = file.getParentFile().exists();
         if (!exist) {
@@ -271,24 +269,7 @@ public class Log {
                 android.util.Log.e("Error", "The Log Dir can not be created!");
                 return;
             }
-
             android.util.Log.i("Success", "The Log Dir was successfully created! -" + file.getParent());
-        }
-
-        exist = file.exists();
-        if (!exist) {
-            try {
-                ret = file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (!ret) {
-                android.util.Log.e("Error", "The Log file can not be created!");
-                return;
-            }
-
-            android.util.Log.i("Success", "The Log file was successfully created! -" + file.getAbsolutePath());
         }
     }
 

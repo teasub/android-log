@@ -19,20 +19,16 @@ package com.github.snowdream.android.util;
 import android.text.TextUtils;
 import android.util.Log;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
 
 /**
  * Created by snowdream on 10/20/13.
  */
 public class Log2File {
 
-    private static File file = null;
 
     private static ExecutorService executor = null;
 
@@ -47,22 +43,7 @@ public class Log2File {
                 public void run() {
                     PrintWriter out = null;
 
-                    if (TextUtils.isEmpty(path)) {
-                        Log.e("Error", "The path of Log file is Null.");
-                        return;
-                    }
-
-                    file = new File(path);
-
-                    if (!file.exists()) {
-                        Log.e("Error", "The Log file does not exist.");
-                        return;
-                    }
-
-                    if (!file.canWrite()) {
-                        Log.e("Error", "The Log file can not be written.");
-                        return;
-                    }
+                    File file = GetFileFromPath(path);
 
                     try {
                         out = new PrintWriter(new BufferedWriter(new FileWriter(file, true)));
@@ -78,4 +59,55 @@ public class Log2File {
         }
     }
 
+    /**
+     * Get File form the file path.<BR>
+     * if the file does not exist, create it and return it.
+     *
+     * @param path the file path
+     * @return the file
+     */
+    private static File GetFileFromPath(String path) {
+        boolean ret;
+        boolean isExist;
+        boolean isWritable;
+        File file = null;
+
+        if (TextUtils.isEmpty(path)) {
+            Log.e("Error", "The path of Log file is Null.");
+            return file;
+        }
+
+        file = new File(path);
+
+        isExist = file.exists();
+        isWritable = file.canWrite();
+
+        if (isExist) {
+            if (isWritable) {
+                //Log.i("Success", "The Log file exist,and can be written! -" + file.getAbsolutePath());
+            } else {
+                Log.e("Error", "The Log file can not be written.");
+            }
+        } else {
+            //create the log file
+            try {
+                ret = file.createNewFile();
+                if (ret) {
+                    Log.i("Success", "The Log file was successfully created! -" + file.getAbsolutePath());
+                } else {
+                    Log.i("Success", "The Log file exist! -" + file.getAbsolutePath());
+                }
+
+                isWritable = file.canWrite();
+                if (!isWritable) {
+                    Log.e("Error", "The Log file can not be written.");
+                }
+            } catch (IOException e) {
+                Log.e("Error", "Failed to create The Log file.");
+                e.printStackTrace();
+            }
+        }
+
+        return file;
+    }
 }
