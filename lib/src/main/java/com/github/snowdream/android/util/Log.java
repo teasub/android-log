@@ -126,24 +126,6 @@ public class Log {
     }
 
     /**
-     * Get the ExecutorService
-     *
-     * @return the ExecutorService
-     */
-    public static ExecutorService getExecutor() {
-        return Log2File.getExecutor();
-    }
-
-    /**
-     * Set the ExecutorService
-     *
-     * @param executor the ExecutorService
-     */
-    public static void setExecutor(ExecutorService executor) {
-        Log2File.setExecutor(executor);
-    }
-
-    /**
      * Send a DEBUG log message.
      *
      * @param msg The message you would like logged.
@@ -155,6 +137,15 @@ public class Log {
             } else {
                 android.util.Log.d(TAG, buildMessage(TYPE.DEBUG, TAG, msg));
             }
+        }
+    }
+
+    /**
+     * Send a DEBUG log message.
+     */
+    public static void d(String msg) {
+        if (isEnable) {
+            android.util.Log.d(TAG, buildMessage(TYPE.DEBUG, TAG, msg));
         }
     }
 
@@ -212,15 +203,6 @@ public class Log {
         return new StringBuffer().append(caller.getClassName()).append(".")
                 .append(caller.getMethodName()).append("(): ").append(msg)
                 .toString();
-    }
-
-    /**
-     * Send a DEBUG log message.
-     */
-    public static void d(String msg) {
-        if (isEnable) {
-            android.util.Log.d(TAG, buildMessage(TYPE.DEBUG, TAG, msg));
-        }
     }
 
     /**
@@ -306,6 +288,24 @@ public class Log {
     }
 
     /**
+     * Get the ExecutorService
+     *
+     * @return the ExecutorService
+     */
+    public static ExecutorService getExecutor() {
+        return Log2File.getExecutor();
+    }
+
+    /**
+     * Set the ExecutorService
+     *
+     * @param executor the ExecutorService
+     */
+    public static void setExecutor(ExecutorService executor) {
+        Log2File.setExecutor(executor);
+    }
+
+    /**
      * get the log file path
      *
      * @return path
@@ -368,6 +368,16 @@ public class Log {
      */
     public static void setPolicy(int policy) {
         Log.policy = policy;
+    }
+
+    /**
+     * Handy function to get a loggable stack trace from a Throwable
+     *
+     * @param tr An exception to log
+     * @return
+     */
+    public static String getStackTraceString(Throwable tr) {
+        return android.util.Log.getStackTraceString(tr);
     }
 
     /**
@@ -454,6 +464,36 @@ public class Log {
      */
     public static void setEnabled(boolean enabled) {
         isEnable = enabled;
+    }
+
+    /**
+     * Checks to see whether or not a log for the specified tag is loggable at the specified level.
+     * The default level of any tag is set to INFO.
+     * This means that any level above and including INFO will be logged.
+     * Before you make any calls to a logging method you should check to see if your tag should be logged.
+     * You can change the default level by setting a system property:
+     * 'setprop log.tag.<YOUR_LOG_TAG> <LEVEL>' Where level is either VERBOSE, DEBUG, INFO, WARN, ERROR, ASSERT, or SUPPRESS.
+     * SUPPRESS will turn off all logging for your tag.
+     * You can also create a local.prop file that with the following in it: 'log.tag.<YOUR_LOG_TAG>=<LEVEL>' and place that in /data/local.prop.
+     *
+     * @param tag   The tag to check
+     * @param level The level to check
+     * @return Whether or not that this is allowed to be logged.
+     */
+    public static boolean isLoggable(String tag, int level) {
+        return android.util.Log.isLoggable(tag, level);
+    }
+
+    /**
+     * Low-level logging call.
+     *
+     * @param priority The priority/type of this log message
+     * @param tag      Used to identify the source of a log message. It usually identifies the class or activity where the log call occurs.
+     * @param msg      The message you would like logged.
+     * @return The number of bytes written.
+     */
+    public static int println(int priority, String tag, String msg) {
+        return android.util.Log.println(priority, tag, msg);
     }
 
     /**
