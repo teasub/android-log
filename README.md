@@ -4,7 +4,7 @@
 android lib - log
 
 ##System requirements
-Android 1.5+
+Android 2.2+
 
 ##Download
 Download [the latest jar][1] or grab via Maven:
@@ -13,13 +13,13 @@ Download [the latest jar][1] or grab via Maven:
 <dependency>
   <groupId>com.github.snowdream.android.util</groupId>
   <artifactId>log</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
 or Gradle:
 ```groovy
-    compile 'com.github.snowdream.android.util:log:1.0.1'
+    compile 'com.github.snowdream.android.util:log:1.0.2'
 ```
 
 ##Usage
@@ -113,4 +113,4 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/1.0.1/log-1.0.1.jar
+[1]:https://oss.sonatype.org/content/groups/public/com/github/snowdream/android/util/log/1.0.2/log-1.0.2.jar
